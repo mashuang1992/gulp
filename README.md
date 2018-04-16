@@ -206,5 +206,119 @@ gulp.src('client/js/**/*.js', { base: 'client' })
 实现 HTML 模板功能，例如公共 HTML 头部和底部，提供可维护性，
 以及实现 HTML 自动压缩，css 压缩，js 压缩，或者合并。
 
+## 1. 全局安装 gulp：
 
+```bash
+$ npm install --global gulp
+```
+## 2. 作为项目的开发依赖（devDependencies）安装：
+
+```bash
+$ npm install --save-dev gulp
+
+```
+## 3. 在项目根目录下创建一个名为 gulpfile.js 的文件：
+
+```bash
+var gulp = require('gulp');
+
+gulp.task('default', function() {
+  // 将你的默认的任务代码放在这
+});
+```
+
+## 4. gulp基本命令
+- gulp.task(任务名,依赖项,callback)
+
+  新建任务，有依赖项，先执行依赖项中的方法/任务
+  
+  ```
+  gulp.task('b',function(callback){
+  
+  })
+  
+  gulp.task('a',['b','c'],function(){
+  
+  })
+  
+  执行a时，首先依赖b和c，在异步时候当定义callback时候，必须等到b执行完 才能执行a，实现流程控制
+  ```
+
+- gulp.src
+
+  用来读文件
+  
+  ```bash
+  读取除了index.css以外的所有css文件
+  gulp.src(['./css/**/*.css','./css/index.css'])
+  
+  代表只读取main.css和index.css文件
+  gulp.src(['./css/main.css','./css/index.css'])
+  
+  ```
+    
+- gulp.dest
+
+  用来写文件
+
+```bash
+var gulp=require('gulp')
+gulp.task('copy-index',function(){
+  gulp.src('./src/index.html')
+    .piple(gulp.dest('./dist/))
+})
+
+```
+- **/*.js
+
+通配符指该目录下所有js
+
+## 5.gulp-less
+
+  用来编译less文件
+  
+
+```bash
+
+var gulp = require('gulp')
+var less = require('gulp-less')
+
+gulp.task('less', function () {
+  gulp.src('./src/less/**/*.less') // 产生一坨数据
+    .pipe(less()) // 通过 pipe 将上一步 src 读取到的数据进入 less 插件，less 插件将处理过后的数据再次吐出来
+    .pipe(gulp.dest('./dist/css')) // 这里通过 pipe 管道接收上一个 less 吐出来的数据，经由 gulp.dest() 写入指定的目录路径
+})
+
+// 该任务用来监视某个文件，当文件发生变化，则执行响应的任务
+gulp.task('watch-less', ['less'], function () {
+  gulp.watch('./src/less/**/*.less', ['less']) //监控这些less文件  当发生改变时 执行less方法
+})
+
+```
+
+## 6.gulp-cssnano
+
+  压缩css（用法同理less）
+  
+  ```bash
+  var gulp=require('gulp')
+  var cssnano = require('gulp-cssnano')
+  gulp.task('less',function(){
+  
+  //这里return 指执行cssnano方法是  需要等待less执行完才可执行 与callback含义一样
+  //return针对gulp命令流程控制 ， callback针对列如setTimeout这种异步的流程控制
+  
+   return gulp.src('./src/less/**/*.css',function(){
+      .pipe(less())
+      .pipe(gulp.dest('./dist/css/'))
+    })  
+  })
+  
+  gulp.task('cssnano',['less'],function(){
+    gulp.src('./dist/css/**/*.css)
+      .pipe(cssnano())
+      .pipe(gulp.dest('./dist/css/min/))
+ 
+  })
+  ```
 
