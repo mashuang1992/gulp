@@ -1,6 +1,5 @@
-# Gulp Tutorial
-
-> Gulp: The streaming build system
+# Gulp 
+gulp 基础应用
 
 ## 1.gulp介绍
 gulp是前端开发过程中一种基于流的代码构建工具，是自动化项目的构建利器；
