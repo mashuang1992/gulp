@@ -188,7 +188,7 @@ gulp.src('client/js/**/*.js', { base: 'client' })
 | gulp-concat-css            | 合并 css 文件                                      |
 | gulp-cssnano               | 压缩 css                                           |
 | gulp-htmlmin               | 压缩HTML                                           |
-| gulp-nunjucks              | 模板引擎                                                   |
+| gulp-nunjucks              | 模板引擎                                           | https://github.com/sindresorhus/gulp-nunjucks
 | gulp-rev                   | 添加版本号                                         |
 | gulp-rev-collector         | 内容替换                                           |
 | gulp-useref                | gulp-if                                            |
