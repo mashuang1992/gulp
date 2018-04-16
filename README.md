@@ -177,30 +177,30 @@ gulp.src('client/js/**/*.js', { base: 'client' })
 
 ## 常用插件
 
-|          插件名称          |                        作用                        |
-|----------------------------|----------------------------------------------------|
-| del                        | 删除文件或文件夹                                   | https://www.npmjs.com/package/del
-| gulp-less                  | 编译LESS文件                                       |
-| gulp-rname                 | 重命名文件                                         |
-| gulp-imagemin              | 图片压缩                                           |
-| gulp-uglify                | 压缩Javascript                                     |
-| gulp-concat                | 合并 js 文件                                       |
-| gulp-concat-css            | 合并 css 文件                                      |
-| gulp-cssnano               | 压缩 css                                           |
-| gulp-htmlmin               | 压缩HTML                                           |
-| gulp-nunjucks              | 模板引擎                                           | https://github.com/sindresorhus/gulp-nunjucks
-| gulp-rev                   | 添加版本号                                         |
-| gulp-rev-collector         | 内容替换                                           |
-| gulp-useref                | gulp-if                                            |
-| gulp-load-plugins          | 依赖自动加载                                       |
-| gulp-useref                | 自动合并打包处理                                   |
-| gulp-wrap                  | 包装内容                                           |
-| gulp-angular-templatecache | AngularJS 模板缓存                                 |
-| browser-sync               | 和 gulp 配合使用实现文件改变执行某个任务后自动刷新 |
-| yargs                      | 获取命令行参数                                     |
-| gulp-if                    | 根据判断执行某个插件                               |
-| http-proxy-middleware      | http 代理插件                                      |
-|                            |                                                    |
+|          插件名称          |                        作用                        |                     链接              |
+|----------------------------|----------------------------------------------------|-------------------------------------|
+| del                        | 删除文件或文件夹                                   | https://www.npmjs.com/package/del     |
+| gulp-less                  | 编译LESS文件                                       |                                       |
+| gulp-rname                 | 重命名文件                                         |                                        |
+| gulp-imagemin              | 图片压缩                                           |                                        |
+| gulp-uglify                | 压缩Javascript                                     |                                       |
+| gulp-concat                | 合并 js 文件                                       |                                       |
+| gulp-concat-css            | 合并 css 文件                                      |                                       |
+| gulp-cssnano               | 压缩 css                                           |                                       |
+| gulp-htmlmin               | 压缩HTML                                           |                                         |
+| gulp-nunjucks              | 模板引擎                                           | https://github.com/sindresorhus/gulp-nunjucks |
+| gulp-rev                   | 添加版本号                                         |                                              |
+| gulp-rev-collector         | 内容替换                                           |                                             |
+| gulp-useref                | gulp-if                                            |                                             |
+| gulp-load-plugins          | 依赖自动加载                                       |                                               |
+| gulp-useref                | 自动合并打包处理                                   |                                              |
+| gulp-wrap                  | 包装内容                                           |                                             |
+| gulp-angular-templatecache | AngularJS 模板缓存                                 |                                             |
+| browser-sync               | 和 gulp 配合使用实现文件改变执行某个任务后自动刷新 |                                                 |
+| yargs                      | 获取命令行参数                                     |                                              |
+| gulp-if                    | 根据判断执行某个插件                               |                                               |
+| http-proxy-middleware      | http 代理插件                                      |                                              |
+|                            |                                                    |                                             |
 
 ## 5.gulp 实战之：高级写页面
 
@@ -224,7 +224,7 @@ $ npm install --save-dev gulp
 
 ```bash
 var gulp = require('gulp');
-
+ 
 gulp.task('default', function() {
   // 将你的默认的任务代码放在这
 });
