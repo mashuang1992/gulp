@@ -338,4 +338,4 @@ gulp.task('watch-less', ['less'], function () {
 
 ## 7.browsersync
 
-
+http://www.browsersync.cn/docs/gulp/
