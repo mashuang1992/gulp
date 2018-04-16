@@ -2,8 +2,6 @@
 
 > Gulp: The streaming build system
 
-![gulp-logo](img/Speed-up-your-workflow-with-a-Gulp-plugin.png)
-
 gulp是前端开发过程中一种基于流的代码构建工具，是自动化项目的构建利器；
 她不仅能对网站资源进行优化，而且在开发过程中很多重复的任务能够使用正确的工具自动完成；
 使用她，不仅可以很愉快的编写代码，而且大大提高我们的工作效率。
@@ -22,7 +20,6 @@ gulp是前端开发过程中一种基于流的代码构建工具，是自动化�
 Gulp是基于Nodejs开发的一个构建工具，借助gulp插件可以实现不同的构建任务，
 其以简洁的配置和卓越的性能成为目前主流的构建工具。
 
-![gulp-task](img/150046-20160308200954022-1598623728.jpg)
 
 ## Introduction
 
