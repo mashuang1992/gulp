@@ -336,3 +336,6 @@ gulp.task('watch-less', ['less'], function () {
   })
 ```
 
+## 7.browsersync
+
+
