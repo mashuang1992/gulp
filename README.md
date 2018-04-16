@@ -2,7 +2,7 @@
 
 > Gulp: The streaming build system
 
-## gulp介绍
+## 1.gulp介绍
 gulp是前端开发过程中一种基于流的代码构建工具，是自动化项目的构建利器；
 她不仅能对网站资源进行优化，而且在开发过程中很多重复的任务能够使用正确的工具自动完成；
 使用她，不仅可以很愉快的编写代码，而且大大提高我们的工作效率。
@@ -22,7 +22,7 @@ Gulp是基于Nodejs开发的一个构建工具，借助gulp插件可以实现不
 其以简洁的配置和卓越的性能成为目前主流的构建工具。
 
 
-## Introduction
+## 2.文档
 
 - 官方：http://gulpjs.com/
 - 中文官网：http://www.gulpjs.com.cn/
@@ -32,7 +32,7 @@ Gulp是基于Nodejs开发的一个构建工具，借助gulp插件可以实现不
 
 ---
 
-## Getting Started
+## 3.环境
 
 > 官方文档：https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md
 
@@ -70,7 +70,7 @@ gulp
 
 ---
 
-## API Documentation
+## 4.API文档
 
 > 官方文档：https://github.com/gulpjs/gulp/blob/master/docs/API.md
 
@@ -179,7 +179,7 @@ gulp.src('client/js/**/*.js', { base: 'client' })
 
 |          插件名称          |                        作用                        |
 |----------------------------|----------------------------------------------------|
-| del                        | 删除文件或文件夹                                   |
+| del                        | 删除文件或文件夹                                   | https://www.npmjs.com/package/del
 | gulp-less                  | 编译LESS文件                                       |
 | gulp-rname                 | 重命名文件                                         |
 | gulp-imagemin              | 图片压缩                                           |
@@ -202,23 +202,25 @@ gulp.src('client/js/**/*.js', { base: 'client' })
 | http-proxy-middleware      | http 代理插件                                      |
 |                            |                                                    |
 
-## gulp 实战之：高级写页面
+## 5.gulp 实战之：高级写页面
 
 实现 HTML 模板功能，例如公共 HTML 头部和底部，提供可维护性，
 以及实现 HTML 自动压缩，css 压缩，js 压缩，或者合并。
 
-## 1. 全局安装 gulp：
+## 6.gulp实例
+
+一： 全局安装 gulp：
 
 ```bash
 $ npm install --global gulp
 ```
-## 2. 作为项目的开发依赖（devDependencies）安装：
+二： 作为项目的开发依赖（devDependencies）安装：
 
 ```bash
 $ npm install --save-dev gulp
 
 ```
-## 3. 在项目根目录下创建一个名为 gulpfile.js 的文件：
+三： 在项目根目录下创建一个名为 gulpfile.js 的文件：
 
 ```bash
 var gulp = require('gulp');
@@ -228,7 +230,7 @@ gulp.task('default', function() {
 });
 ```
 
-## 4. gulp基本命令
+四： gulp基本命令
 - gulp.task(任务名,依赖项,callback)
 
   新建任务，有依赖项，先执行依赖项中的方法/任务
@@ -274,7 +276,7 @@ gulp.task('copy-index',function(){
 
 通配符指该目录下所有js
 
-## 5.gulp-less
+五： gulp-less
 
   用来编译less文件
   
@@ -297,14 +299,26 @@ gulp.task('watch-less', ['less'], function () {
 
 ```
 
-## 6.gulp-cssnano
+六： gulp-cssnano
 
   压缩css（用法同理less）
-  
-  ```bash
+  
+七： gulp-del
+
+  删除文件（每当提交任务时，需要删除dist文件，防止冲突）
+  
+```bash
   var gulp=require('gulp')
   var cssnano = require('gulp-cssnano')
-  gulp.task('less',function(){
+  var del=require('gulp-del')
+  
+  gulp.task('clear',function(callback){
+    del('./dist/')
+      .then(function(){
+        callback()
+      })
+  })
+  gulp.task('less',['clear'],function(){
   
   //这里return 指执行cssnano方法是  需要等待less执行完才可执行 与callback含义一样
   //return针对gulp命令流程控制 ， callback针对列如setTimeout这种异步的流程控制
@@ -321,5 +335,5 @@ gulp.task('watch-less', ['less'], function () {
       .pipe(gulp.dest('./dist/css/min/))
  
   })
-  ```
+```
 
