@@ -151,6 +151,7 @@ gulp.task('b', ['a'], function () {
 #### options.base
 
 options.base：类型：String  设置输出路径以某个路径的某个组成部分为基础向后拼接，具体看下面示例：
+- 可以为数组 gulp.src([读取的文件，读取的文件/!读取文件（排除文件）])
 
 ```js
 gulp.src('client/js/**/*.js') 
