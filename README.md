@@ -20,7 +20,12 @@ gulp是前端开发过程中一种基于流的代码构建工具，是自动化�
 Gulp是基于Nodejs开发的一个构建工具，借助gulp插件可以实现不同的构建任务，
 其以简洁的配置和卓越的性能成为目前主流的构建工具。
 
-
+```
+## npm安装命令解释
+- npm i --production 只安装"dependencies"里面的内容
+- npm i -S 安装到"dependencies"
+- npm i -D 安装到"devDependencies"
+```
 ## 2.文档
 
 - 官方：http://gulpjs.com/
@@ -152,6 +157,17 @@ gulp.task('b', ['a'], function () {
 
 options.base：类型：String  设置输出路径以某个路径的某个组成部分为基础向后拼接，具体看下面示例：
 - 可以为数组 gulp.src([读取的文件，读取的文件/!读取文件（排除文件）])
+
+```js
+保留读取路径
+gulp.task('static', ['clear'], function () {
+  return gulp.src(paths.staticPath, {
+      base: './src/' // 这里，你想保留哪一级路径，就配置该路径的上一级目录即可
+    })
+    .pipe(gulp.dest(paths.dist))
+})
+
+```
 
 ```js
 gulp.src('client/js/**/*.js') 
@@ -336,6 +352,104 @@ gulp.task('watch-less', ['less'], function () {
  
   })
 ```
+
+八：  gulp-nunjucks 模板引擎
+
+```
+	<!DOCTYPE html>
+	<html lang="en">
+	
+	<head>
+	  <meta charset="UTF-8">
+	  <title>Document</title>
+	  {% block style %}
+	  {% endblock %}
+	</head>
+	
+	<body>
+	  {% include "./header.html" %}
+	  {% block body %}
+	  {% endblock %}
+	  {% include "./footer.html" %}
+	  {% block script %}
+	  {% endblock %}
+	</body>
+	
+	</html>
+```
+```
+	{% extends "./layout/layout.html" %}
+
+	{% block style %}
+	<link rel="stylesheet" href="css/main.css">
+	<style>
+	  /*body {
+	    background-color: pink;
+	  }*/
+	</style>
+	{% endblock %}
+	
+	{% block body %}
+	<ul>
+	  <li><a href="login.html">去登陆</a></li>
+	  <li><a href="register.html">去注册</a></li>
+	</ul>
+	<h1>我是挺坑的 body</h1>
+	{% endblock %}
+```
+
+九：brower-sync
+
+```
+// 1. 多个页面公共的头部和底部
+// 2. less 构建
+// 3. js 构建
+// 4. 当 HTML 变化了，当 less 变化了、当 js 变化了，刷新浏览器
+
+var gulp = require('gulp')
+var nunjucks = require('gulp-nunjucks')
+var browserSync = require('browser-sync').create()
+var less = require('gulp-less')
+
+// 1. 构建 HTML
+gulp.task('html', function () {
+  return gulp.src('./src/*.html')
+    .pipe(nunjucks.compile())
+    .pipe(gulp.dest('./dist'))
+})
+
+gulp.task('less', function () {
+  return gulp.src('./src/less/**/*.less')
+    .pipe(less())
+    .pipe(gulp.dest('./dist/css'))
+})
+
+gulp.task('less-watch', ['less'], function (callback) {
+  browserSync.reload()
+  callback()
+})
+
+gulp.task('html-watch', ['html'], function (callback) {
+  browserSync.reload()
+  callback()
+})
+
+// 2. 当 HTML 构建完成，开启服务器（驱动 dist 目录），自动打开浏览器，
+gulp.task('serve', ['html', 'less'], function () {
+  browserSync.init({
+    server: {
+      baseDir: "./dist/"
+    }
+  })
+  gulp.watch(["./src/*.html", './src/layout/*.html'], ['html-watch'])
+  gulp.watch('./src/less/**/*.less', ['less-watch'])
+})
+
+gulp.task('default', ['serve'])
+
+
+```
+
 
 ## 7.browsersync
 
